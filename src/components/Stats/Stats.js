@@ -9,7 +9,9 @@ export default class Stats extends Component{
 
     render(){
         return(
-            Stats
+            <div>
+                Stats baby
+            </div>
         )
     }
 }
