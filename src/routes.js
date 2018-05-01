@@ -1,24 +1,21 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import Auth from './components/Auth/Auth';
+import Login from './components/Login/Login';
+import Nav from './components/Nav/Nav';
 import Dashboard from './components/Dashboard/Dashboard';
-import SpinResults from './components/SpinResults/SpinResults';
-import FriendsList from './components/FriendsList/FriendsList';
-import RestaurantPage from './components/RestaurantPage/RestaurantPage';
-import RunnerUps from './components/RunnerUps/RunnerUps';
-import GoogleDirections from './components/GoogleDirections/GoogleDirections';
-import MotionStyledComp from './components/MotionStyledComp/MotionStyledComp';
+import Profile from './components/Profile/Profile';
+import QuestionPage from './components/QuestionPage/QuestionPage';
+import Stats from './components/Stats/Stats';
+import WinnerPage from './components/WinnerPage/WinnerPage';
 
 export default (
     <Switch>
-        <Route component={Auth} exact path='/'/>
+        <Route component={Login} exact path='/'/>
         <Route component={Dashboard} path='/dashboard'/>
-        <Route component={SpinResults} path='/spin-results'/>
-        <Route component={FriendsList} path='/friends-list'/>
-        <Route component={RestaurantPage} path='/restaurant-page'/>
-        <Route component={RunnerUps} path='/runner-up'/>
-        <Route component={GoogleDirections} path='/google-directions'/>
-        <Route component={MotionStyledComp} path='/motion-styled-comp'/>
+        <Route component={Profile} path='/profile'/>
+        <Route component={QuestionPage} path='/question-page'/>
+        <Route component={WinnerPage} path='/winner-page'/>
+        <Route component={Stats} path='/stats'/>
     </Switch>
 )
