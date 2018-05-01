@@ -44,6 +44,8 @@ table {
 
 /*///////////////////////////////////////////////CSS RESET FILE//////////////////////////////////////////////////////////////////////////*/
 
+@import url('https://fonts.googleapis.com/css?family=Acme');
+
 .App {
   height: 100vh;
   width: 100%;
@@ -61,4 +63,6 @@ table {
   background-color: #599099;
   display: flex;
   justify-content: space-between;
+  font-family: 'Acme', sans-serif;
 }
+

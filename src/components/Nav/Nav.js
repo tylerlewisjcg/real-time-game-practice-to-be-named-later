@@ -6,7 +6,7 @@ import Drawer from 'material-ui/Drawer';
 import Stats from './../Stats/Stats';
 import Profile from './../Profile/Profile';
 
-export default class Nav extends Component {
+class Nav extends Component {
     constructor() {
         super()
         this.state = {
@@ -23,6 +23,7 @@ export default class Nav extends Component {
     }
 
     render() {
+
         return (
             <div className='nav-bar'>
                 <Button onClick={this.toggleDrawer('left', true)}>Stats</Button>
@@ -35,7 +36,7 @@ export default class Nav extends Component {
                     onClick={this.toggleDrawer('left', false)}
                     onKeyDown={this.toggleDrawer('left', false)}
                     >
-                    {<Profile />}
+                    {<Stats />}
                 </div>
                 </Drawer>
                 <Drawer anchor='right' open={this.state.right} onClose={this.toggleDrawer('right', false)}>
@@ -45,10 +46,12 @@ export default class Nav extends Component {
                     onClick={this.toggleDrawer('right', false)}
                     onKeyDown={this.toggleDrawer('right', false)}
                     >
-                    {<Stats />}
+                    {<Profile />}
                 </div>
                 </Drawer>
             </div>
                 )
             }
 }
+
+export default Nav;
