@@ -7,7 +7,6 @@ export default class WinnerPage extends Component {
     constructor() {
         super()
 
-
     }
 
     render() {
