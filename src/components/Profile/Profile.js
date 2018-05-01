@@ -9,7 +9,12 @@ export default class Profile extends Component{
 
     render(){
         return(
+            <div>
             Profile
+            <a href={process.env.REACT_APP_LOGOUT}>
+            <button>Logout</button>
+          </a>
+          </div>
         )
     }
 }

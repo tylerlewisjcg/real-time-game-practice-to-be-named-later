@@ -1,10 +1,13 @@
 {
   "name": "would-you-rather",
   "version": "0.1.0",
+  "main": "server/server.js",
+  "proxy": "http://localhost:3010/",
   "private": true,
   "dependencies": {
     "body-parser": "^1.18.2",
     "cors": "^2.8.4",
+    "dotenv": "^5.0.1",
     "express": "^4.16.3",
     "express-session": "^1.15.6",
     "massive": "^4.7.2",
