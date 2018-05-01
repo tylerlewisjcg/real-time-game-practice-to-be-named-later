@@ -52,6 +52,7 @@ table {
 .dashboard{
   height: 100vh;
   width: 100%;
+  background-color: #D5FFEE;
 }
 
 .nav-bar{
