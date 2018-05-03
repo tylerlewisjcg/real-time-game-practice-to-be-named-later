@@ -9,7 +9,8 @@ export default class QuestionPage extends Component {
         this.state = {
             time: 60,
             option1: 'this is some dummy data data',
-            option2: 'this is also some other dummy data  datathis is some dummy data'
+            option2: 'this is also some other dummy data  datathis is some dummy data',
+            decision: null
         }
     }
 
@@ -17,7 +18,10 @@ export default class QuestionPage extends Component {
         setInterval(() => {
             this.setState({
                 time: this.state.time-1
-            })
+            }, ()=>{if(this.state.time <= 0){
+                this.props.history.push('/winner-page')
+            }})
+            
         }, 1000)
     }
 
@@ -25,7 +29,6 @@ export default class QuestionPage extends Component {
         this.timeCount();
         // axios.get()
         //get would you rather question
-        //grab 1 minute timer
     }
 
     render() {
