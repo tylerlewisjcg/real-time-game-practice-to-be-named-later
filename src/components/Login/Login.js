@@ -60,7 +60,7 @@ export default class Login extends Component {
                 </Transition>
                 <div>
                     <div>
-                        <Button style={{ boxShadow: '1px 1px 2px black', borderRadius: '50px' }}><Person style={{ fontSize: '46px' }} /></Button>
+                        <a href={process.env.REACT_APP_LOGIN}><Button style={{ boxShadow: '1px 1px 2px black', borderRadius: '50px' }}><Person style={{ fontSize: '46px' }} /></Button></a>
                     </div>
                     <div className="login-rules">
                         <Button
