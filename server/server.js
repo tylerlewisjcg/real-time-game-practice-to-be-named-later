@@ -114,7 +114,7 @@ var countdown = 360;
 var shortOrLongTimer = 5;
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`)));
-  cron.schedule('0 0 9,11,13,15,17 * * *', function () {
+  cron.schedule('0 47 9,11,13,15,16,17 * * *', function () {
 
     console.log('running a task every minute');
 
@@ -126,7 +126,7 @@ const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port $
       shortOrLongTimer = 5;
     }
 
-    io.sockets.emit('test', {test: 'test'})
+    io.sockets.emit('change-screen')
     // countdown = 60;
   
     // starter = 59;

@@ -222,3 +222,29 @@ table {
   font-family: 'Acme', sans-serif;
   font-size: 25px;
 }
+
+.question-page-counter{
+  font-family: 'Acme', sans-serif;
+  font-size: 30px;
+}
+
+.question-page-title{
+  font-family: 'Acme', sans-serif;
+  font-size: 25px;
+}
+
+.question-page{
+  height: 100vh;
+  width: 100%;
+  background-color: #D5FFEE;
+  
+}
+.question-page-container{
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  height: auto;
+  width: 100%;
+}

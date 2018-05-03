@@ -11,12 +11,11 @@ export default class Dashboard extends Component {
         super()
         this.state = {
             countdown: 0,
-            test: null
         }
         this.subscribeToTimer(data => this.setState({ countdown: data.countdown }))
         this.subscribeToTimer = this.subscribeToTimer.bind(this)
-        this.test();
-        this.test = this.test.bind(this)
+        this.timeUp();
+        this.timeUp = this.timeUp.bind(this)
 
         // this.setTimer = this.setTimer.bind(this)
     }
@@ -25,10 +24,8 @@ export default class Dashboard extends Component {
         socket.on('timer', data => cb(data))
     }
 
-    test() {
-        socket.on('test', data => this.setState({
-            test: data.test
-        }))
+    timeUp() {
+        socket.on('change-screen', () => this.props.history.push('/question-page'))
     }
 
     timeConverter(time) {
@@ -49,7 +46,7 @@ export default class Dashboard extends Component {
     }
 
     render() {
-        console.log(this.state.test)
+        console.log(this.props.history)
         return (
             <div className='dashboard'>
                 <Nav />
