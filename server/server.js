@@ -6,7 +6,8 @@ const express = require("express"),
   cors = require("cors"),
   passport = require("passport"),
   Auth0Strategy = require("passport-auth0"),
-  socket = require('socket.io');
+  socket = require('socket.io'),
+  cron = require('node-cron');
 
 const {
   SERVER_PORT,
@@ -106,22 +107,33 @@ app.get("/auth/logout", (req, res) => {
 });
 
 
+
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`)));
 
-var countdown = 1000;
 var counting = true;
+var starter = 59;
+var countdown = starter;
 
 setInterval(function () {
   if (countdown <= 0) return;
   if (!counting) return;
   countdown--;
+  
+  //This is Cron Biz//10-0//Tenga Cuidado//
+
+cron.schedule('* * * * *', function(){
+  console.log('running a task every minute');
+  starter = 59;
+  countdown = starter;
+})
+
   io.sockets.emit('timer', { countdown: countdown })
 }, 1000)
 
 io.on('connection', function (client) {
   console.log('connected')
-  client.on('settimer', function (data) {
-    countdown = data.time;
+  client.on('settimer', function () {
+    countdown = starter;
   })
 
   client.on('event', function (data) {
