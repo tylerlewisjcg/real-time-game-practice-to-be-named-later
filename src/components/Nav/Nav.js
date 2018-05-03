@@ -1,6 +1,4 @@
 import React, { Component } from 'react';
-import SwipeableDrawer from 'material-ui/SwipeableDrawer';
-import { withStyles } from 'material-ui/styles';
 import Button from 'material-ui/Button';
 import Drawer from 'material-ui/Drawer';
 import Stats from './../Stats/Stats';

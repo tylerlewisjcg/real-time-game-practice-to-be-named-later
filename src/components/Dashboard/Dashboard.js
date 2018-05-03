@@ -8,7 +8,6 @@ export default class Dashboard extends Component{
     constructor(){
         super()
         this.state={
-            newTime: 50,
             countdown: null
         }
         this.subscribeToTimer(data => this.setState({countdown: data.countdown}))
@@ -21,8 +20,7 @@ export default class Dashboard extends Component{
     }
 
     setTimer(){
-        console.log('componentDidMount workin')
-        socket.emit('settimer', {time: this.state.newTime})
+        socket.emit('settimer')
     }
 
     componentDidMount(){
@@ -30,7 +28,6 @@ export default class Dashboard extends Component{
     }
 
     render(){
-        console.log('state newTime', this.state.newTime)
         return(
             <div className='dashboard'>
                 <Nav/>

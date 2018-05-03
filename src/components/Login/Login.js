@@ -9,7 +9,6 @@ import Dialog, {
     DialogContentText,
     DialogTitle,
 } from 'material-ui/Dialog';
-import Slide from 'material-ui/transitions/Slide';
 
 
 
