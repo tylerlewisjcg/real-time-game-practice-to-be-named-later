@@ -106,19 +106,32 @@ app.get("/auth/logout", (req, res) => {
   res.redirect(process.env.FAILURE_REDIRECT);
 });
 
-  //This is Cron Biz//10-0//Tenga Cuidado//
+//This is Cron Biz//10-0//Tenga Cuidado//
+//Works but needs to be started after 5 in order to get the shortOrLongTimer variable to be in sync
+//will be on the right track after the first cronjob executes
 
-var countdown = 29340;
-cron.schedule('0 0 9,11,3 * * *', function(){
-  console.log('running a task every minute');
-  // countdown = 60;
-  
-  // starter = 59;
-  // countdown = starter;
-})
-
+var countdown = 360;
+var shortOrLongTimer = 5;
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`)));
+  cron.schedule('0 0 9,11,13,15,17 * * *', function () {
+
+    console.log('running a task every minute');
+
+    shortOrLongTimer--;
+    if(shortOrLongTimer > 0){
+      countdown = 7200;
+    } else {
+      countdown = 57600;
+      shortOrLongTimer = 5;
+    }
+
+    io.sockets.emit('test', {test: 'test'})
+    // countdown = 60;
+  
+    // starter = 59;
+    // countdown = starter
+  })
 
 var counting = true;
 // var countdown = starter;

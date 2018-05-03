@@ -2,21 +2,42 @@ import React, { Component } from 'react';
 import Nav from './../Nav/Nav';
 import { Link } from 'react-router-dom';
 import io from 'socket.io-client';
+import moment from 'moment'
+
 const socket = io.connect('http://localhost:3010');
 
 export default class Dashboard extends Component {
     constructor() {
         super()
         this.state = {
-            countdown: null
+            countdown: 0,
+            test: null
         }
         this.subscribeToTimer(data => this.setState({ countdown: data.countdown }))
         this.subscribeToTimer = this.subscribeToTimer.bind(this)
+        this.test();
+        this.test = this.test.bind(this)
+
         // this.setTimer = this.setTimer.bind(this)
     }
 
     subscribeToTimer(cb) {
         socket.on('timer', data => cb(data))
+    }
+
+    test() {
+        socket.on('test', data => this.setState({
+            test: data.test
+        }))
+    }
+
+    timeConverter(time) {
+        var hours = Math.floor(time / 3600);
+        var remains = Math.floor(time % 3600);
+        var minutes = Math.floor(remains / 60);
+        var seconds = Math.floor(remains % 60);
+        let newTime = `${hours}:${minutes}:${seconds}`;
+        return newTime;
     }
 
     // setTimer() {
@@ -28,17 +49,19 @@ export default class Dashboard extends Component {
     }
 
     render() {
+        console.log(this.state.test)
         return (
             <div className='dashboard'>
                 <Nav />
-                <div style={{display: 'flex', justifyContent: 'center', alignItems: 'center'}}>
+                <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center' }}>
 
                     <div className='dashboard-container'>
                         <div>
                             Next Game in:
                     </div>
-                        <div style={{textShadow: '1px 1px 1px black'}}>
-                            {this.state.countdown}
+                        <div style={{ textShadow: '1px 1px 1px black' }}>
+                            <br />
+                            {this.timeConverter(this.state.countdown)}
                         </div>
                     </div>
                 </div>
