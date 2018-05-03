@@ -5,9 +5,8 @@ const express = require("express"),
   massive = require("massive"),
   cors = require("cors"),
   passport = require("passport"),
-  io = require('socket.io'),
   Auth0Strategy = require("passport-auth0");
-
+  
 const {
   SERVER_PORT,
   SESSION_SECRET,
@@ -107,33 +106,3 @@ massive(CONNECTION_STRING)
 
 
   app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`));
-
-  // var countdown = 1000;
-  // var counting = true;
-
-  // setInterval(function(){
-  //   if(coundown <= 0) return;
-  //   if (!counting) return;
-  //   countdown--;
-  //   io.sockets.emit('timer', {coundown: countdown})
-  // }, 1000)
-
-  // io.on('connection', function() {
-  //   console.log('connected');
-  //   client.on('settimer', function(data){
-  //     countdown = data.time;
-  //   })
-
-  //   client.on('event', function(data){
-  //     switch(data.status){
-  //       case false: counting = false;
-  //       break;
-  //       case true: counting = true;
-  //       break;
-  //       default: return;
-  //     }
-  //   })
-  //   client.on('disconnect', function(){
-  //     console.log('disconnected')
-  //   })
-  // })
