@@ -52,12 +52,12 @@ class Nav extends Component {
                 </Drawer>
                 <Drawer anchor='right' open={this.state.right} onClose={this.toggleDrawer('right', false)}>
                     <div
-                        tabIndex={0}
-                        role="button"
-                        onClick={this.toggleDrawer('right', false)}
-                        onKeyDown={this.toggleDrawer('right', false)}
+                        // tabIndex={0}
+                        // role="button"
+                        // onClick={this.toggleDrawer('right', false)}
+                        // onKeyDown={this.toggleDrawer('right', false)}
                     >
-                        {<Profile />}
+                        {<Profile toggleDrawer={this.toggleDrawer}/>}
                     </div>
                 </Drawer>
             </div>

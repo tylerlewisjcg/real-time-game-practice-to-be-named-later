@@ -27,6 +27,12 @@ export default class Stats extends Component {
                         TBone Ping Pong - 18 Streak
                 </div>
                 </div>
+                <div className='chart-container'>
+                    Chart
+                </div>
+                <div className='stats-leader'>
+                    Winner
+                </div>
             </div>
         )
     }
