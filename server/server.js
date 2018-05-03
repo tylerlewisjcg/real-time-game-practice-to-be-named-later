@@ -106,26 +106,29 @@ app.get("/auth/logout", (req, res) => {
   res.redirect(process.env.FAILURE_REDIRECT);
 });
 
+  //This is Cron Biz//10-0//Tenga Cuidado//
+
+var countdown = 29340;
+cron.schedule('0 0 9,11,3 * * *', function(){
+  console.log('running a task every minute');
+  // countdown = 60;
+  
+  // starter = 59;
+  // countdown = starter;
+})
 
 
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`)));
 
 var counting = true;
-var starter = 59;
-var countdown = starter;
+// var countdown = starter;
 
 setInterval(function () {
-  if (countdown <= 0) return;
+  // if (countdown <= 0) {
+  //   countdown = 60;
+  // };
   if (!counting) return;
   countdown--;
-  
-  //This is Cron Biz//10-0//Tenga Cuidado//
-
-cron.schedule('* * * * *', function(){
-  console.log('running a task every minute');
-  starter = 59;
-  countdown = starter;
-})
 
   io.sockets.emit('timer', { countdown: countdown })
 }, 1000)
@@ -133,7 +136,7 @@ cron.schedule('* * * * *', function(){
 io.on('connection', function (client) {
   console.log('connected')
   client.on('settimer', function () {
-    countdown = starter;
+    // countdown = starter;
   })
 
   client.on('event', function (data) {
