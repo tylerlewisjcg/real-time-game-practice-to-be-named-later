@@ -5,9 +5,8 @@ const express = require("express"),
   massive = require("massive"),
   cors = require("cors"),
   passport = require("passport"),
-  // io = require('socket.io'),
+  io = require('socket.io'),
   Auth0Strategy = require("passport-auth0");
-
 
 const {
   SERVER_PORT,
@@ -49,13 +48,13 @@ massive(CONNECTION_STRING)
         clientID: CLIENT_ID,
         clientSecret: CLIENT_SECRET,
         callbackURL: CALLBACK_URL,
-        scope: "openid profile email "
+        scope: "openid profile"
       },
       function(accessToken, refreshToken, extraParams, profile, done) {
         const db = app.get("db");
-        db.users_DB.find_user([profile.id]).then(userResult => {
+        db.find_user([profile.id]).then(userResult => {
           if (!userResult[0]) {
-            db.users_DB
+            db
               .create_user([profile.displayName, profile.id, profile.picture])
               .then(createdUser => {
                 return done(null, createdUser[0].id);
