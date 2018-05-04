@@ -11,7 +11,8 @@ export default class WinnerPage extends Component {
     constructor() {
         super()
         this.state = {
-            winner: null
+            winner: null,
+            count: 0
         }
     }
 
@@ -20,7 +21,8 @@ export default class WinnerPage extends Component {
      .then(res => {
          console.log('res.data', res.data.name)
          this.setState({
-             winner: res.data.name
+             winner: res.data.name,
+             count: res.data.votes
          })
      })
  }
@@ -29,6 +31,7 @@ export default class WinnerPage extends Component {
     return(
         <div>
             {this.state.winner}
+            {this.state.count}
         </div>
     )
  }
@@ -62,6 +65,7 @@ export default class WinnerPage extends Component {
                 </div>
                 <div className='winner-page-winner'>
                     {this.winnerDisplay()}
+
                 </div>
             </Transition>
 
