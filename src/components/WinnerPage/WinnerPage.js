@@ -5,12 +5,33 @@ import Dashboard from './../Dashboard/Dashboard';
 import Button from 'material-ui/Button';
 import Transition from 'react-motion-ui-pack';
 import { spring } from 'react-motion';
+import axios from 'axios';
 
 export default class WinnerPage extends Component {
     constructor() {
         super()
-
+        this.state = {
+            winner: null
+        }
     }
+
+ componentDidMount(){
+     axios.get('/winner')
+     .then(res => {
+         console.log('res.data', res.data.name)
+         this.setState({
+             winner: res.data.name
+         })
+     })
+ }
+
+ winnerDisplay(){
+    return(
+        <div>
+            {this.state.winner}
+        </div>
+    )
+ }
 
     render() {
         return (
@@ -24,21 +45,26 @@ export default class WinnerPage extends Component {
                         Display Chart.js Animations
                     </div>
                     {/* Need to do a SetTimeout here */}
-                    <Transition
-                        component="div"
-                        enter={{
-                            opacity: 1,
-                            translateX: spring(0, { stiffness: 50, damping: 7.5 })
-                        }}
-                        leave={{
-                            opacity: 0,
-                            translateX: -700
-                        }}
-                    >
-                        <div className='winner-page-winner'>
-                            Winner: Option 1 or 2
-                        </div>
-                    </Transition>
+
+                <Transition
+                component="div"
+                enter={{
+                    opacity: 1,
+                    translateX: spring(0, { stiffness: 50, damping: 7.5 })
+                }}
+                leave={{
+                    opacity: 0,
+                    translateX: -700
+                }}
+            >
+                <div className='winner-page-winner'>
+                    Winner:
+                </div>
+                <div className='winner-page-winner'>
+                    {this.winnerDisplay()}
+                </div>
+            </Transition>
+
                 </div>
             </div>
         )

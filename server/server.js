@@ -106,6 +106,21 @@ app.get("/auth/logout", (req, res) => {
   res.redirect(process.env.FAILURE_REDIRECT);
 });
 
+var option1 = 0;
+var option2 = 0;
+
+app.get('/final-count/:decision', (req,res) => {
+  if(req.params.decision === '1'){
+    option1++;
+    res.sendStatus(200);
+  } else if (req.params.decision === '2'){
+    option2++;
+    res.sendStatus(200);
+  } else {
+    console.log("didn't choose fast enough")
+    res.sendStatus(200);
+  }
+})
 //This is Cron Biz//10-0//Tenga Cuidado//
 //Works but needs to be started after 5 in order to get the shortOrLongTimer variable to be in sync
 //will be on the right track after the first cronjob executes
@@ -113,11 +128,29 @@ app.get("/auth/logout", (req, res) => {
 var countdown = 360;
 var shortOrLongTimer = 5;
 
+app.get('/winner', (req, res) => {
+  if(option1 > option2){
+
+    res.status(200).json({name: 'option2', votes: option2})
+  } else if(option2 > option1){
+    res.status(200).json({name: 'option1', votes: option1})
+  } else {
+    console.log('tie')
+    let tie = Math.floor((Math.random() * 100)) % 2;
+    if(tie > 0){
+      res.status(200).json({name: 'option1', votes: option1})
+    } else {
+      res.status(200).json({name: 'option2', votes: option2})
+    }
+  }
+})
+
 const io = socket(app.listen(SERVER_PORT, () => console.log(`Listening on port ${SERVER_PORT}`)));
-  cron.schedule('0 47 9,11,13,15,16,17 * * *', function () {
+  cron.schedule('0 0 9,11,13,15,17 * * *', function () {
 
     console.log('running a task every minute');
-
+    option1 = 0;
+    option2 = 0;
     shortOrLongTimer--;
     if(shortOrLongTimer > 0){
       countdown = 7200;

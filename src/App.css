@@ -226,6 +226,9 @@ table {
 .question-page-counter{
   font-family: 'Acme', sans-serif;
   font-size: 30px;
+  display: flex;
+  justify-content: center;
+  width: 100%;
 }
 
 .question-page-title{
@@ -239,6 +242,15 @@ table {
   background-color: #D5FFEE;
   
 }
+
+.question-page-decision{
+  font-family: 'Acme', sans-serif;
+  font-size: 25px;
+}
+
+.question-page:active{
+  background-color: pink;
+}
 .question-page-container{
   margin-top: 10px;
   display: flex;
@@ -247,4 +259,18 @@ table {
   align-items: center;
   height: auto;
   width: 100%;
+  margin-bottom: 30px;
+}
+
+.question-page-footer{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  bottom: 0;
+  height: 30px;
+  background-color: #FF9C9B;
+  width: 100%;
+  text-shadow: 1px 1px 1px black;
+  color: white;
 }
